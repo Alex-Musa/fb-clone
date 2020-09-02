@@ -7,7 +7,7 @@ function Widgets() {
     return (
         <div className="Widgets">
             <iframe 
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCleverProgrammerr%2F&amp;tabs=timeline&amp;width=340&amp;height=1500&amp;small_header=false&amp;adapt_container_width=true&amp"
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fiiraqis.in.us&tabs=timeline&width=340&height=2000&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
             width="340" 
             height="100%"
             style={{border: "none", overflow: "hidden"}} 

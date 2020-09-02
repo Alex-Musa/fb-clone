@@ -14,8 +14,15 @@ import ForumIcon from '@material-ui/icons/Forum'
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
+
+import { useStateValue } from "./StateProvider"
+
 const Header = () => {
+
+  const [{user}, dispatch] = useStateValue();
+
   return (
+    
     <div className="header">
 
       <div className="header__left">
@@ -47,8 +54,8 @@ const Header = () => {
 
       <div className="header__right">
         <div className="header__info">
-          <Avatar src="https://scontent-dfw5-2.xx.fbcdn.net/v/t1.0-9/83992426_718620235623533_5432283166135913906_o.jpg?_nc_cat=108&_nc_sid=09cbfe&_nc_ohc=5N1wV2GrelUAX-_rg2S&_nc_ht=scontent-dfw5-2.xx&oh=483bb805acda4e9bb61744c803342c21&oe=5F716C11"/>
-          <h4>ALi Ip</h4>
+          <Avatar src={user.photoURL}/>
+          <h4>{user.displayName}</h4>
         </div>
         <IconButton>
           <AddIcon />

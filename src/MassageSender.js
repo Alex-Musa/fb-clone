@@ -6,29 +6,42 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 
+import { useStateValue } from "./StateProvider"
+
+import db from "./firebase"
+import firebase from 'firebase'
+
 function MassageSender() {
 
+    const [{user}, dispatch] = useStateValue();
     const [input, setInput] = useState("")
     const [imageUrl, setimageUrl] = useState("")
 
+
+
     const handelSubmit = (e) => {
         e.preventDefault();
-
-        //  some db stuff
+        //  send post to database
+        db.collection('posts').add({
+            message: input,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            profilePic: user.photoURL,
+            username: user.displayName,
+            image: imageUrl
+        })
 
         setInput("")
         setimageUrl("")
-
     }
 
     return (
         <div className="massageSender">
             <div className="massageSender__top">
-                <Avatar src="https://scontent-dfw5-2.xx.fbcdn.net/v/t1.0-9/83992426_718620235623533_5432283166135913906_o.jpg?_nc_cat=108&_nc_sid=09cbfe&_nc_ohc=5N1wV2GrelUAX-_rg2S&_nc_ht=scontent-dfw5-2.xx&oh=483bb805acda4e9bb61744c803342c21&oe=5F716C11" />
+                <Avatar src={user.photoURL} />
                 <form>
                     <input
                         value={input} onChange={(e) => setInput(e.target.value)}
-                    className="messageSender__input" type='text' placeholder={`What's on your mind?`} />
+                    className="messageSender__input" type='text' placeholder={`What's on your mind, ${user.displayName}?`} />
                     <input
                         value={imageUrl} onChange={(e) => setimageUrl(e.target.value)}
                     type='text' placeholder="image URL (Optional)"/>
